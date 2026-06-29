@@ -1,18 +1,4 @@
-# Virtual Environment
 venv/
-
-# Python Cache
 __pycache__/
 *.py[cod]
-
-# Uploads
 uploads/
-
-# macOS
-.DS_Store
-
-# VS Code
-.vscode/
-
-# Environment Variables
-.env
