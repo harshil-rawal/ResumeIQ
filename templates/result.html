@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ResumeIQ | Result</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+ResumeIQ
+</div>
+
+<ul class="nav-links">
+
+<li><a href="/">Home</a></li>
+
+<li><a href="#">Features</a></li>
+
+<li><a href="#">About</a></li>
+
+</ul>
+
+<button class="nav-btn">
+
+Analyze Resume
+
+</button>
+
+</nav>
+
+</header>
+
+<section class="result-section">
+
+<div class="result-card">
+
+<div class="success">
+
+✅ Resume Analysis Complete
+
+</div>
+
+<h1>Your Resume Report</h1>
+
+<div class="score-card">
+
+<h3>ATS SCORE</h3>
+
+<div class="score">
+
+87
+
+</div>
+
+<p>Excellent Resume</p>
+
+</div>
+
+<div class="result-grid">
+
+<div class="box">
+
+<h2>Skills Detected</h2>
+
+<ul>
+
+<li>Python</li>
+
+<li>Flask</li>
+
+<li>Git</li>
+
+<li>SQL</li>
+
+<li>Linux</li>
+
+<li>Machine Learning</li>
+
+</ul>
+
+</div>
+
+<div class="box">
+
+<h2>Missing Keywords</h2>
+
+<ul>
+
+<li>Docker</li>
+
+<li>AWS</li>
+
+<li>Kubernetes</li>
+
+<li>REST API</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="suggestion-box">
+
+<h2>Suggestions</h2>
+
+<ul>
+
+<li>Add measurable achievements.</li>
+
+<li>Improve project descriptions.</li>
+
+<li>Add cloud technologies.</li>
+
+<li>Use stronger action verbs.</li>
+
+</ul>
+
+</div>
+
+<div class="result-buttons">
+
+<button class="primary-btn">
+
+Download Report
+
+</button>
+
+<a href="/upload-page" class="secondary-btn">
+
+Analyze Another Resume
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</body>
+
+</html>

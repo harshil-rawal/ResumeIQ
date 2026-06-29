@@ -1,31 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>ResumeIQ</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ResumeIQ | Upload</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
 
-    <h1>ResumeIQ</h1>
+    <!-- ================= NAVBAR ================= -->
 
-    <h2>Upload Resume</h2>
+    <header>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <nav class="navbar">
 
-        <input
-            type="file"
-            name="resume"
-            accept=".pdf,.docx"
-            required>
+            <div class="logo">
 
-        <br><br>
+                ResumeIQ
 
-        <button type="submit">
-            Upload Resume
-        </button>
+            </div>
 
-    </form>
+            <ul class="nav-links">
+
+                <li><a href="/">Home</a></li>
+
+                <li><a href="#">Features</a></li>
+
+                <li><a href="#">About</a></li>
+
+            </ul>
+
+            <button class="nav-btn">
+
+                Analyze Resume
+
+            </button>
+
+        </nav>
+
+    </header>
+
+    <!-- ================= Upload Section ================= -->
+
+    <section class="upload-section">
+
+        <div class="upload-card">
+
+            <h1>
+
+                Upload Your Resume
+
+            </h1>
+
+            <p>
+
+                Upload your resume in PDF or DOCX format and let ResumeIQ
+                analyze it using AI.
+
+            </p>
+
+            <form
+                action="/upload"
+                method="POST"
+                enctype="multipart/form-data">
+
+                <label
+                    id="drop-area"
+                    for="resume"
+                    class="upload-box">
+
+                    <div class="upload-icon">
+
+                        📄
+
+                    </div>
+
+                    <h2>
+
+                        Drag & Drop Resume
+
+                    </h2>
+
+                    <p>
+
+                        or click here to browse
+
+                    </p>
+
+                    <span>
+
+                        PDF • DOCX
+
+                    </span>
+
+                </label>
+
+                <input
+                    id="resume"
+                    type="file"
+                    name="resume"
+                    accept=".pdf,.doc,.docx"
+                    required
+                    hidden>
+
+                <div id="file-preview" class="file-preview">
+
+                    <div class="file-icon" id="file-icon">
+                        📄
+                    </div>
+
+                    <div class="file-details">
+
+                        <h4 id="file-name">
+                            No file selected
+                        </h4>
+
+                        <p id="file-size">
+
+                        </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="remove-file"
+                    class="remove-file">
+
+                    ✖
+
+                </button>
+
+            </div>
+
+                <button
+                    type="submit"
+                    class="upload-btn"
+                    id="upload-btn">
+
+                    <span id="button-text">
+
+                        Analyze Resume
+
+                    </span>
+
+                    <span
+                        id="loader"
+                        class="loader">
+
+                    </span>
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 

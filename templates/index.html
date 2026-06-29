@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ResumeIQ</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                ResumeIQ
+
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="#">Home</a></li>
+
+                <li><a href="#">Features</a></li>
+
+                <li><a href="#">About</a></li>
+
+            </ul>
+
+            <button class="nav-btn">
+
+                Analyze Resume
+
+            </button>
+
+        </nav>
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <!-- LEFT -->
+
+            <div class="hero-left">
+
+                <span class="badge">
+
+                    🚀 AI Powered Resume Screening
+
+                </span>
+
+                <h1>
+
+                    Optimize Your Resume for Every Job Application
+
+                </h1>
+
+                <p>
+
+                    Upload your resume and job description to receive an ATS score, identify missing keywords, and get actionable suggestions tailored to the role.
+
+                </p>
+
+                <div class="buttons">
+
+                   <a href="/upload-page" class="primary-btn">
+                        Analyze Resume
+                    </a>
+
+                    <button class="secondary-btn">
+
+                        Learn More
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+
+            <div class="hero-right">
+
+                <img src="{{ url_for('static', filename='images/hero.svg') }}"
+                    alt="Resume Illustration">
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
