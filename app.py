@@ -1,8 +1,11 @@
+import os
 from flask import Flask, render_template, request
 from services.resume_analyzer import analyze_resume
 
 app = Flask(__name__)
+UPLOAD_FOLDER = "uploads"
 
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route("/")
 def home():
@@ -19,7 +22,7 @@ def upload():
 
     resume = request.files["resume"]
 
-    filepath = f"uploads/{resume.filename}"
+    filepath = os.path.join(UPLOAD_FOLDER, resume.filename)
 
     resume.save(filepath)
 
