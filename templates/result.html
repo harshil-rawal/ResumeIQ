@@ -2,163 +2,292 @@
 <html lang="en">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ResumeIQ | Result</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="{{ url_for('static', filename='style.css') }}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Results | ResumeIQ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-
-<header>
-
-<nav class="navbar">
-
-<div class="logo">
-ResumeIQ
-</div>
-
-<ul class="nav-links">
-
-<li><a href="/">Home</a></li>
-
-<li><a href="#">Features</a></li>
-
-<li><a href="#">About</a></li>
-
-</ul>
-
-<button class="nav-btn">
-
-Analyze Resume
-
-</button>
-
-</nav>
-
-</header>
-
-<section class="result-section">
-
-<div class="result-card">
-
-<div class="success">
-
-✅ Resume Analysis Complete
-
-</div>
-
-<h1>Your Resume Report</h1>
-
-<div class="score-card">
-
-<h3>ATS SCORE</h3>
-
-<div class="score">
-
-87
-
-</div>
-
-<p>Excellent Resume</p>
-
-</div>
-
-<div class="result-grid">
-
-<div class="box">
-
-<h2>Skills Detected</h2>
-
-<ul>
-
-<li>Python</li>
-
-<li>Flask</li>
-
-<li>Git</li>
-
-<li>SQL</li>
-
-<li>Linux</li>
-
-<li>Machine Learning</li>
-
-</ul>
-
-</div>
-
-<div class="box">
-
-<h2>Missing Keywords</h2>
-
-<ul>
-
-<li>Docker</li>
-
-<li>AWS</li>
-
-<li>Kubernetes</li>
-
-<li>REST API</li>
-
-</ul>
-
-</div>
-
-</div>
-
-<div class="suggestion-box">
-
-<h2>Suggestions</h2>
-
-<ul>
-
-<li>Add measurable achievements.</li>
-
-<li>Improve project descriptions.</li>
-
-<li>Add cloud technologies.</li>
-
-<li>Use stronger action verbs.</li>
-
-</ul>
-
-</div>
-
-<div class="result-buttons">
-
-<button class="primary-btn">
-
-Download Report
-
-</button>
-
-<a href="/upload-page" class="secondary-btn">
-
-Analyze Another Resume
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
+    <div class="background-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="grid-pattern"></div>
+    </div>
+
+    <header class="navbar-container">
+        <nav class="navbar">
+            <a href="/" class="logo">ResumeIQ</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#features">Features</a></li>
+                <li><a href="/upload-page">Analyze</a></li>
+            </ul>
+            <a href="/upload-page" class="nav-btn">Analyze Resume</a>
+        </nav>
+    </header>
+
+    <main class="result-page">
+        <section class="result-banner">
+            <div class="badge success-badge">
+                <span class="badge-icon">✅</span>
+                <div>
+                    <p class="badge-title">Resume Analysis Complete</p>
+                    <p class="badge-subtitle">Your resume was analyzed successfully.</p>
+                </div>
+            </div>
+            <div class="result-meta">
+                <span>Updated 1 minute ago</span>
+                <span class="status-pill">Status: Complete</span>
+            </div>
+        </section>
+
+        <section class="result-hero">
+            <div class="hero-summary">
+                <p class="section-label">ATS Insights</p>
+                <h1>Premium resume analytics for every application.</h1>
+                <p class="section-description">This dashboard shows your ATS compatibility, resume strength, missing keywords, and AI-driven opportunities so you can apply with confidence.</p>
+                <div class="hero-metrics">
+                    <div class="hero-metric">
+                        <span>Resume Quality</span>
+                        <strong>Excellent</strong>
+                    </div>
+                    <div class="hero-metric">
+                        <span>ATS Compatible</span>
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="hero-metric">
+                        <span>AI Confidence</span>
+                        <strong>High</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-score-card">
+                <div class="score-card-top">
+                    <div>
+                        <p class="score-label">ATS Score</p>
+                        <h2>92%</h2>
+                    </div>
+                    <span class="score-pill">Match: 87%</span>
+                </div>
+                <div class="circular-chart-wrap">
+                    <svg class="circular-chart blue" viewBox="0 0 36 36" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="result-ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#60a5fa" />
+                                <stop offset="100%" stop-color="#a78bfa" />
+                            </linearGradient>
+                        </defs>
+                        <path class="circle-bg"
+                            d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="circle" stroke-dasharray="92, 100"
+                            d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <text x="18" y="20.35" class="percentage">0%</text>
+                    </svg>
+                </div>
+                <div class="score-details">
+                    <div class="score-detail">
+                        <span>Resume Quality</span>
+                        <strong>Excellent</strong>
+                    </div>
+                    <div class="score-detail">
+                        <span>ATS Compatible</span>
+                        <strong>92%</strong>
+                    </div>
+                    <div class="score-detail">
+                        <span>AI Confidence</span>
+                        <strong>High</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="analytics-grid">
+            <article class="analytics-card">
+                <div class="card-icon">📈</div>
+                <p class="card-label">Resume Quality</p>
+                <strong>92%</strong>
+                <div class="card-progress">
+                    <span class="result-progress-fill" data-fill="92"></span>
+                </div>
+            </article>
+            <article class="analytics-card">
+                <div class="card-icon">🛡️</div>
+                <p class="card-label">ATS Compatibility</p>
+                <strong>89%</strong>
+                <div class="card-progress">
+                    <span class="result-progress-fill" data-fill="89"></span>
+                </div>
+            </article>
+            <article class="analytics-card">
+                <div class="card-icon">🤖</div>
+                <p class="card-label">AI Confidence</p>
+                <strong>85%</strong>
+                <div class="card-progress">
+                    <span class="result-progress-fill" data-fill="85"></span>
+                </div>
+            </article>
+            <article class="analytics-card">
+                <div class="card-icon">🔑</div>
+                <p class="card-label">Keyword Match</p>
+                <strong>87%</strong>
+                <div class="card-progress">
+                    <span class="result-progress-fill" data-fill="87"></span>
+                </div>
+            </article>
+            <article class="analytics-card">
+                <div class="card-icon">📝</div>
+                <p class="card-label">Readability</p>
+                <strong>78%</strong>
+                <div class="card-progress">
+                    <span class="result-progress-fill" data-fill="78"></span>
+                </div>
+            </article>
+            <article class="analytics-card">
+                <div class="card-icon">🎨</div>
+                <p class="card-label">Formatting</p>
+                <strong>81%</strong>
+                <div class="card-progress">
+                    <span class="result-progress-fill" data-fill="81"></span>
+                </div>
+            </article>
+            <article class="analytics-card">
+                <div class="card-icon">💼</div>
+                <p class="card-label">Experience Quality</p>
+                <strong>88%</strong>
+                <div class="card-progress">
+                    <span class="result-progress-fill" data-fill="88"></span>
+                </div>
+            </article>
+            <article class="analytics-card">
+                <div class="card-icon">🧠</div>
+                <p class="card-label">Skill Coverage</p>
+                <strong>90%</strong>
+                <div class="card-progress">
+                    <span class="result-progress-fill" data-fill="90"></span>
+                </div>
+            </article>
+        </section>
+
+        <section class="panels-row">
+            <div class="panel panel-skills">
+                <div class="panel-header">
+                    <h3>Detected Skills</h3>
+                    <p>Skills found in your resume.</p>
+                </div>
+                <div class="skill-badges">
+                    <span class="skill-pill">Python</span>
+                    <span class="skill-pill">Flask</span>
+                    <span class="skill-pill">SQL</span>
+                    <span class="skill-pill">Git</span>
+                </div>
+            </div>
+            <div class="panel panel-missing">
+                <div class="panel-header">
+                    <h3>Missing Keywords</h3>
+                    <p>Boost your match rate by adding these terms.</p>
+                </div>
+                <div class="keyword-chips">
+                    <span class="keyword-chip">Docker</span>
+                    <span class="keyword-chip">AWS</span>
+                    <span class="keyword-chip">Kubernetes</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="suggestions-section">
+            <div class="section-heading">
+                <h2>AI Suggestions</h2>
+                <p>Strategic recommendations to make your resume stand out.</p>
+            </div>
+            <div class="suggestions-grid">
+                <article class="suggestion-card">
+                    <div class="suggestion-icon">⚡</div>
+                    <div>
+                        <h4>Quantify achievements</h4>
+                        <p>Use metrics to show impact and strengthen each bullet point.</p>
+                    </div>
+                    <span class="priority-badge">High</span>
+                </article>
+                <article class="suggestion-card">
+                    <div class="suggestion-icon">🧾</div>
+                    <div>
+                        <h4>Improve summary</h4>
+                        <p>Refresh your summary with concise results and key strengths.</p>
+                    </div>
+                    <span class="priority-badge">Medium</span>
+                </article>
+                <article class="suggestion-card">
+                    <div class="suggestion-icon">☁️</div>
+                    <div>
+                        <h4>Add cloud technologies</h4>
+                        <p>Highlight AWS, Docker, Kubernetes, or Azure experience.</p>
+                    </div>
+                    <span class="priority-badge">Medium</span>
+                </article>
+            </div>
+        </section>
+
+        <section class="insights-section">
+            <div class="section-heading">
+                <h2>Resume Insights</h2>
+                <p>High-level observations from the AI review.</p>
+            </div>
+            <div class="insights-grid">
+                <article class="insight-card success">
+                    <div class="insight-icon">✅</div>
+                    <div>
+                        <h4>Strong Technical Skills</h4>
+                        <p>Your resume highlights technical experience clearly and effectively.</p>
+                    </div>
+                </article>
+                <article class="insight-card warning">
+                    <div class="insight-icon">⚠️</div>
+                    <div>
+                        <h4>Missing Cloud Experience</h4>
+                        <p>Add cloud platforms to better match modern job descriptions.</p>
+                    </div>
+                </article>
+                <article class="insight-card warning">
+                    <div class="insight-icon">🚀</div>
+                    <div>
+                        <h4>Improve Quantified Achievements</h4>
+                        <p>Use more data points to showcase your impact in each role.</p>
+                    </div>
+                </article>
+                <article class="insight-card neutral">
+                    <div class="insight-icon">✍️</div>
+                    <div>
+                        <h4>Better Action Verbs</h4>
+                        <p>Start bullets with stronger verbs like “Led”, “Built”, “Improved”.</p>
+                    </div>
+                </article>
+                <article class="insight-card success">
+                    <div class="insight-icon">🧾</div>
+                    <div>
+                        <h4>ATS Formatting Good</h4>
+                        <p>Your formatting is clean and compatible with most ATS parsers.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="result-actions">
+            <button class="btn btn-primary" id="download-report">Download Report</button>
+            <a href="/upload-page" class="btn btn-secondary">Analyze Another Resume</a>
+            <a href="/" class="btn btn-secondary">Go Home</a>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
