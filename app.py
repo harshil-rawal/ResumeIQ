@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+from services.resume_analyzer import analyze_resume
 
 app = Flask(__name__)
 
@@ -13,8 +14,13 @@ def upload():
 
     resume = request.files["resume"]
 
-    return f"Received file: {resume.filename}"
+    filepath = f"uploads/{resume.filename}"
 
+    resume.save(filepath)
+
+    analysis = analyze_resume(filepath)
+
+    return jsonify(analysis)
 
 if __name__ == "__main__":
     app.run(debug=True)

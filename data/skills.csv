@@ -1,0 +1,46 @@
+Skill,Category,Aliases,Priority
+Python,Language,py,1
+Java,Language,,1
+C++,Language,cpp,1
+C#,Language,csharp,1
+JavaScript,Language,js;javascript,1
+TypeScript,Language,ts,1
+Go,Language,golang,1
+Rust,Language,,1
+
+Flask,Framework,,1
+Django,Framework,,1
+FastAPI,Framework,,1
+React,Framework,reactjs,1
+Angular,Framework,,1
+Vue,Framework,vuejs,1
+Node.js,Framework,node;nodejs,1
+
+NumPy,Library,numpy,1
+Pandas,Library,,1
+Scikit-learn,Library,sklearn,1
+TensorFlow,Library,tf;tensorflow,1
+PyTorch,Library,torch,1
+
+SQL,Database,,1
+MySQL,Database,,1
+PostgreSQL,Database,postgres,1
+MongoDB,Database,mongo,1
+
+Git,Tool,,1
+GitHub,Tool,,1
+Docker,Tool,,1
+Kubernetes,Tool,k8s,1
+Linux,Tool,,1
+Postman,Tool,,1
+
+AWS,Cloud,,1
+Azure,Cloud,,1
+GCP,Cloud,google cloud,1
+
+Machine Learning,Concept,ml,2
+Deep Learning,Concept,dl,2
+Natural Language Processing,Concept,nlp,2
+Computer Vision,Concept,cv,2
+Data Structures,Concept,dsa,2
+Object Oriented Programming,Concept,oop,2
