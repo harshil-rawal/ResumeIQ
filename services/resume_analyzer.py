@@ -1,7 +1,7 @@
 from utils.parser import extract_text_from_pdf
 from utils.preprocessing import preprocess_text
 from utils.nlp_utils import generate_all_ngrams
-from utils.skills import extract_skills
+from utils.skills import extract_skills, generate_skill_statistics
 
 
 def analyze_resume(filepath):
@@ -20,11 +20,14 @@ def analyze_resume(filepath):
 
     # Step 4: Extract skills
     skills = extract_skills(ngrams)
+    
+    statistics = generate_skill_statistics(skills)
 
     # Return complete analysis
     return {
         "raw_text": raw_text,
         "tokens": tokens,
         "ngrams": list(ngrams),
-        "skills": skills
+        "skills": skills,
+        "statistics": statistics
     }
