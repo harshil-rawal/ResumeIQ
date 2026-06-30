@@ -2,6 +2,7 @@ from utils.parser import extract_text_from_pdf
 from utils.preprocessing import preprocess_text
 from utils.nlp_utils import generate_all_ngrams
 from utils.skills import extract_skills, generate_skill_statistics
+from utils.ats import calculate_ats_score
 
 
 def analyze_resume(filepath):

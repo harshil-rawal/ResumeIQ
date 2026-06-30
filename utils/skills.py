@@ -118,3 +118,12 @@ def generate_skill_statistics(skills):
         )
 
     return statistics
+
+def get_skill_priority(skill):
+    """
+    Return the priority of a canonical skill.
+    """
+
+    skill = normalize(skill)
+
+    return PRIORITY_MAP.get(skill, 0)
