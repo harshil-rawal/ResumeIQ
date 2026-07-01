@@ -43,6 +43,14 @@ SKILL_SCORE_THRESHOLDS = {
     ]
 }
 
+READABILITY_CONFIG = {
+    "ideal_word_range": (200, 700),
+    "acceptable_word_range": (100, 1000),
+    "ideal_sentence_range": (10, 25),
+    "minimum_paragraphs": 10,
+    "minimum_bullets": 4
+}
+
 ATS_STRUCTURE_CONFIG = {
     "ideal_word_count": (300, 800),
     "acceptable_word_count": (150, 1000),
@@ -199,10 +207,6 @@ def calculate_structure_score(raw_text):
         score += 3
     elif len(positions) >= 2:
         score += 2
-        
-    print(sections)
-    print(positions)
-
 
     return min(score, ATS_WEIGHTS["structure"])
 
@@ -214,11 +218,85 @@ def calculate_keyword_score(skills):
     return 0
 
 
+import re
+
 def calculate_readability_score(raw_text):
     """
-    Evaluate readability of the resume.
+    Calculate readability score out of 10.
     """
-    return 0
+
+    text = raw_text.strip()
+
+    if not text:
+        return 0
+
+    score = 0
+
+    # -------------------------
+    # Word Count
+    # -------------------------
+    words = text.split()
+    word_count = len(words)
+
+    ideal_min, ideal_max = READABILITY_CONFIG["ideal_word_range"]
+    acceptable_min, acceptable_max = READABILITY_CONFIG["acceptable_word_range"]
+
+    if ideal_min <= word_count <= ideal_max:
+        score += 3
+    elif acceptable_min <= word_count <= acceptable_max:
+        score += 2
+    elif word_count > 0:
+        score += 1
+
+    # -------------------------
+    # Sentence Length
+    # -------------------------
+    sentences = re.split(r"[.!?]+", text)
+    sentences = [s.strip() for s in sentences if s.strip()]
+
+    if sentences:
+        average_length = word_count / len(sentences)
+
+        min_len, max_len = READABILITY_CONFIG["ideal_sentence_range"]
+
+        if min_len <= average_length <= max_len:
+            score += 3
+        elif average_length > 0:
+            score += 2
+
+    # -------------------------
+    # Organization
+    # -------------------------
+    non_empty_lines = [
+        line for line in text.splitlines()
+        if line.strip()
+    ]
+
+    if len(non_empty_lines) >= READABILITY_CONFIG["minimum_paragraphs"]:
+        score += 2
+    elif len(non_empty_lines) >= 5:
+        score += 1
+
+    # -------------------------
+    # Bullet Points
+    # -------------------------
+    bullet_count = 0
+
+    for line in non_empty_lines:
+        if line.strip().startswith(("-", "*", "•")):
+            bullet_count += 1
+
+    if bullet_count >= READABILITY_CONFIG["minimum_bullets"]:
+        score += 2
+    elif bullet_count >= 2:
+        score += 1
+    
+    print("TEXT:", repr(text))
+    print("WORD COUNT:", word_count)
+    print("NON EMPTY LINES:", len(non_empty_lines))
+    print("BULLETS:", bullet_count)
+    print("SCORE:", score)
+    return min(score, ATS_WEIGHTS["readability"])
 
 def calculate_ats_score(raw_text, skills, statistics):
     """
@@ -239,3 +317,4 @@ def calculate_ats_score(raw_text, skills, statistics):
         "overall_score": overall_score,
         "breakdown": scores
     }
+    

@@ -33,12 +33,6 @@ for _, row in skill_df.iterrows():
         if alias and alias != "nan":
             ALIAS_MAP[alias] = skill
 
-print(SKILL_MAP["python"])
-print(ALIAS_MAP["js"])
-print(CATEGORY_MAP["docker"])
-print(PRIORITY_MAP["machine learning"])
-
-
 def extract_skills(ngrams):
     """
     Extract skills from generated n-grams using lookup dictionaries.
