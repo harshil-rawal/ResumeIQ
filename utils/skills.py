@@ -1,5 +1,7 @@
 import pandas as pd
 from pathlib import Path
+from typing import Dict, List
+
 
 DATA_PATH = Path(__file__).parent.parent / "data" / "skills.csv"
 
@@ -9,6 +11,7 @@ SKILL_MAP = {}
 CATEGORY_MAP = {}
 PRIORITY_MAP = {}
 ALIAS_MAP = {}
+TIER_MAP = {}
 
 def normalize(text):
     return text.strip().lower()
@@ -17,11 +20,13 @@ for _, row in skill_df.iterrows():
     skill = normalize(row["Skill"])
     category = row["Category"]
     priority = row["Priority"]
+    tier = row["Tier"].strip()
 
     # Store canonical skill
     SKILL_MAP[skill] = row["Skill"]
     CATEGORY_MAP[skill] = category
     PRIORITY_MAP[skill] = priority
+    TIER_MAP[skill] = tier
 
     # Store aliases
     aliases = str(row["Aliases"]).split(";")
@@ -71,7 +76,9 @@ def extract_skills(ngrams):
 
     return extracted
 
-def generate_skill_statistics(skills):
+def generate_skill_statistics(
+    skills: Dict[str, List[str]]
+) -> Dict:
     """
     Generate statistics from extracted skills.
 
@@ -82,7 +89,7 @@ def generate_skill_statistics(skills):
         dict: Summary statistics of extracted skills.
     """
 
-    category_distribution = {}
+    category_distribution: Dict[str, int] = {}
     total_skills = 0
 
     for category, skill_list in skills.items():
@@ -102,14 +109,14 @@ def generate_skill_statistics(skills):
 
     if category_distribution:
         statistics["largest_category"] = max(
-            category_distribution,
-            key=category_distribution.get
-        )
+            category_distribution.items(),
+            key=lambda item: item[1]
+        )[0]
 
         statistics["smallest_category"] = min(
-            category_distribution,
-            key=category_distribution.get
-        )
+            category_distribution.items(),
+            key=lambda item: item[1]
+        )[0]
 
     return statistics
 
@@ -121,3 +128,20 @@ def get_skill_priority(skill):
     skill = normalize(skill)
 
     return PRIORITY_MAP.get(skill, 0)
+
+def get_skill_tier(skill):
+    """
+    Return the level of a skill.
+
+    Returns:
+        "Core", "Advanced", or None
+    """
+
+    normalized = normalize(skill)
+
+    if normalized in ALIAS_MAP:
+        normalized = ALIAS_MAP[normalized]
+        
+    
+    return TIER_MAP.get(normalized)
+

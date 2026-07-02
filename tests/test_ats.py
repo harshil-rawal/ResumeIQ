@@ -15,3 +15,7 @@ def test_ats_initialization():
 
     assert result["overall_score"] == 0
     assert "breakdown" in result
+    assert "report" in result
+    assert "strength" in result["report"]
+    assert "weakness" in result["report"]
+    assert "warning" in result["report"]

@@ -1,8 +1,13 @@
-from utils.skills import get_skill_priority
+from utils.skills import (
+    get_skill_priority,
+    get_skill_tier
+)
 from utils.section_detector import (
     detect_sections,
     extract_section_positions
 )
+
+from utils.report_generator import generate_report
 
 """
 ATS Scoring Engine for ResumeIQ
@@ -12,7 +17,7 @@ ATS_WEIGHTS = {
     "skills": 40,
     "sections": 20,
     "structure": 15,
-    "keywords": 15,
+    "technical_profile": 15,
     "readability": 10
 }
 
@@ -58,6 +63,73 @@ ATS_STRUCTURE_CONFIG = {
     "minimum_sections": 3,
     "ideal_paragraphs": 4,
     "minimum_paragraphs": 2
+}
+
+TECHNICAL_PROFILE_CONFIG = {
+    "coverage": [
+        (15, 5),
+        (10, 4),
+        (5, 3),
+        (1, 2),
+        (0, 0)
+    ],
+
+    "diversity": [
+        (5, 4),
+        (4, 3),
+        (3, 2),
+        (2, 1),
+        (0, 0)
+    ],
+
+    "advanced": [
+        (6, 3),
+        (4, 2),
+        (2, 1),
+        (0, 0)
+    ],
+
+    "balance": [
+        (5, 3),
+        (3, 2),
+        (2, 1),
+        (0, 0)
+    ]
+}
+
+TECH_ECOSYSTEMS = {
+    "Backend": {
+        "Python",
+        "Flask",
+        "FastAPI",
+        "SQL",
+        "Docker",
+        "Git"
+    },
+
+    "AI": {
+        "Python",
+        "NumPy",
+        "Pandas",
+        "Scikit-learn",
+        "TensorFlow",
+        "PyTorch"
+    },
+
+    "Cloud": {
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Linux"
+    },
+
+    "Frontend": {
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Angular",
+        "Vue"
+    }
 }
 
 
@@ -210,14 +282,6 @@ def calculate_structure_score(raw_text):
 
     return min(score, ATS_WEIGHTS["structure"])
 
-
-def calculate_keyword_score(skills):
-    """
-    Evaluate keyword coverage and distribution.
-    """
-    return 0
-
-
 import re
 
 def calculate_readability_score(raw_text):
@@ -291,11 +355,7 @@ def calculate_readability_score(raw_text):
     elif bullet_count >= 2:
         score += 1
     
-    print("TEXT:", repr(text))
-    print("WORD COUNT:", word_count)
-    print("NON EMPTY LINES:", len(non_empty_lines))
-    print("BULLETS:", bullet_count)
-    print("SCORE:", score)
+    
     return min(score, ATS_WEIGHTS["readability"])
 
 def calculate_ats_score(raw_text, skills, statistics):
@@ -307,14 +367,77 @@ def calculate_ats_score(raw_text, skills, statistics):
         "skills": calculate_skill_score(skills, statistics),
         "sections": calculate_section_score(raw_text),
         "structure": calculate_structure_score(raw_text),
-        "keywords": calculate_keyword_score(skills),
+        "technical_profile": calculate_technical_profile_score(
+            skills,
+            statistics
+        ),
         "readability": calculate_readability_score(raw_text)
     }
 
-    overall_score = sum(scores.values())
+    overall_score = min(sum(scores.values()),100)
 
     return {
         "overall_score": overall_score,
-        "breakdown": scores
+
+        "breakdown": scores,
+
+        "analysis": {
+            "strengths": [],
+            "weaknesses": [],
+            "warnings": []
+        },
+        
+        "report": generate_report(scores)
     }
     
+def score_from_threshold(value, thresholds):
+    """
+    Return score based on threshold table.
+    """
+
+    for minimum, score in thresholds:
+        if value >= minimum:
+            return score
+
+    return 0
+
+def calculate_technical_profile_score(skills, statistics):
+    """
+    Calculate the technical profile score out of 15.
+    """
+
+    score = 0
+
+    total_skills = statistics.get("total_skills", 0)
+    total_categories = statistics.get("total_categories", 0)
+
+    score += score_from_threshold(
+        total_skills,
+        TECHNICAL_PROFILE_CONFIG["coverage"]
+    )
+
+    score += score_from_threshold(
+        total_categories,
+        TECHNICAL_PROFILE_CONFIG["diversity"]
+    )
+
+    advanced_count = 0
+
+    for category in skills.values():
+
+        for skill in category:
+
+            if get_skill_tier(skill) == "Advanced":
+                advanced_count += 1
+
+    score += score_from_threshold(
+        advanced_count,
+        TECHNICAL_PROFILE_CONFIG["advanced"]
+    )
+
+    score += score_from_threshold(
+        total_categories,
+        TECHNICAL_PROFILE_CONFIG["balance"]
+    )
+
+    return min(score, ATS_WEIGHTS["technical_profile"])
