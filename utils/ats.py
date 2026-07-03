@@ -7,6 +7,8 @@ from utils.section_detector import (
     extract_section_positions
 )
 
+from utils.technology_graph import detect_domains
+from utils.improvement_planner import generate_improvement_plan
 from utils.report_generator import generate_report
 
 """
@@ -375,19 +377,24 @@ def calculate_ats_score(raw_text, skills, statistics):
     }
 
     overall_score = min(sum(scores.values()),100)
+    report = generate_report(scores)
+
+    detected_domains = detect_domains(skills)
+    improvement_plan = generate_improvement_plan(
+        scores,
+        detected_domains
+    )
+
 
     return {
         "overall_score": overall_score,
 
         "breakdown": scores,
-
-        "analysis": {
-            "strengths": [],
-            "weaknesses": [],
-            "warnings": []
-        },
         
-        "report": generate_report(scores)
+        "report": generate_report(scores),
+        
+        "detected_domains": detected_domains,
+        "improvement_plan": improvement_plan
     }
     
 def score_from_threshold(value, thresholds):

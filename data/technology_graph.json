@@ -1,0 +1,386 @@
+{
+  "Backend": {
+    "required": {
+      "Python": {
+        "weight": 3,
+        "category": "Language",
+        "reason": "Python is one of the most widely used backend programming languages.",
+        "priority": "Medium",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      },
+      "Java": {
+        "weight": 2,
+        "category": "Language",
+        "reason": "Java is widely used for enterprise backend development.",
+        "priority": "Low",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "C++": {
+        "weight": 2,
+        "category": "Language",
+        "reason": "C++ is valuable for high-performance backend systems.",
+        "priority": "Low",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "Go": {
+        "weight": 2,
+        "category": "Language",
+        "reason": "Go is increasingly popular for scalable backend services.",
+        "priority": "Low",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "SQL": {
+        "weight": 2,
+        "category": "Database",
+        "reason": "SQL is fundamental for working with relational databases.",
+        "priority": "Low",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      }
+    },
+    "frameworks": {
+      "Flask": {
+        "weight": 4,
+        "category": "Framework",
+        "reason": "Flask is a popular lightweight backend framework.",
+        "priority": "High",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      },
+      "FastAPI": {
+        "weight": 4,
+        "category": "Framework",
+        "reason": "FastAPI is widely used for building high-performance APIs.",
+        "priority": "High",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "Django": {
+        "weight": 4,
+        "category": "Framework",
+        "reason": "Django provides a complete framework for backend development.",
+        "priority": "High",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "Node.js": {
+        "weight": 3,
+        "category": "Framework",
+        "reason": "Node.js enables scalable JavaScript backend applications.",
+        "priority": "Medium",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    },
+    "recommended": {
+      "Docker": {
+        "weight": 3,
+        "category": "DevOps",
+        "reason": "Containerization is one of the most sought-after backend deployment skills.",
+        "priority": "Medium",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "PostgreSQL": {
+        "weight": 2,
+        "category": "Database",
+        "reason": "PostgreSQL is a powerful relational database widely used in production.",
+        "priority": "Low",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "AWS": {
+        "weight": 3,
+        "category": "Cloud",
+        "reason": "Cloud deployment experience is highly valued in backend engineering.",
+        "priority": "Medium",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    },
+    "advanced": {
+      "Kubernetes": {
+        "weight": 5,
+        "category": "DevOps",
+        "reason": "Kubernetes is the industry standard for container orchestration.",
+        "priority": "Critical",
+        "difficulty": "Advanced",
+        "estimated_learning_time": "4-8 weeks"
+      },
+      "Redis": {
+        "weight": 4,
+        "category": "Database",
+        "reason": "Redis improves application performance through caching.",
+        "priority": "High",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "NGINX": {
+        "weight": 4,
+        "category": "DevOps",
+        "reason": "NGINX is widely used for reverse proxying and load balancing.",
+        "priority": "High",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    }
+  },
+  "Frontend": {
+    "required": {
+      "JavaScript": {
+        "weight": 3,
+        "category": "Language",
+        "reason": "JavaScript is the foundation of modern frontend development.",
+        "priority": "Medium",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      },
+      "TypeScript": {
+        "weight": 3,
+        "category": "Language",
+        "reason": "TypeScript improves maintainability and reliability of JavaScript applications.",
+        "priority": "Medium",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    },
+    "frameworks": {
+      "React": {
+        "weight": 4,
+        "category": "Framework",
+        "reason": "React is the most widely adopted frontend framework.",
+        "priority": "High",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "Angular": {
+        "weight": 4,
+        "category": "Framework",
+        "reason": "Angular is popular for enterprise frontend applications.",
+        "priority": "High",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "Vue": {
+        "weight": 4,
+        "category": "Framework",
+        "reason": "Vue offers a lightweight and flexible frontend ecosystem.",
+        "priority": "High",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    },
+    "recommended": {
+      "Docker": {
+        "weight": 2,
+        "category": "DevOps",
+        "reason": "Docker simplifies deployment of frontend applications.",
+        "priority": "Low",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    },
+    "advanced": {
+      "Next.js": {
+        "weight": 5,
+        "category": "Framework",
+        "reason": "Next.js enables server-side rendering and production-ready React applications.",
+        "priority": "Critical",
+        "difficulty": "Advanced",
+        "estimated_learning_time": "4-8 weeks"
+      },
+      "Redux": {
+        "weight": 3,
+        "category": "Framework",
+        "reason": "Redux is commonly used for predictable state management.",
+        "priority": "Medium",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    }
+  },
+  "Machine Learning": {
+    "required": {
+      "Python": {
+        "weight": 3,
+        "category": "Language",
+        "reason": "Python is the primary language for machine learning.",
+        "priority": "Medium",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      },
+      "NumPy": {
+        "weight": 4,
+        "category": "Library",
+        "reason": "NumPy provides efficient numerical computation.",
+        "priority": "High",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      },
+      "Pandas": {
+        "weight": 4,
+        "category": "Library",
+        "reason": "Pandas is essential for data manipulation and preprocessing.",
+        "priority": "High",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      }
+    },
+    "frameworks": {
+      "Scikit-learn": {
+        "weight": 5,
+        "category": "Library",
+        "reason": "Scikit-learn is the standard library for classical machine learning.",
+        "priority": "Critical",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "TensorFlow": {
+        "weight": 5,
+        "category": "Framework",
+        "reason": "TensorFlow is widely used for deep learning applications.",
+        "priority": "Critical",
+        "difficulty": "Advanced",
+        "estimated_learning_time": "4-8 weeks"
+      },
+      "PyTorch": {
+        "weight": 5,
+        "category": "Framework",
+        "reason": "PyTorch is popular for research and production AI systems.",
+        "priority": "Critical",
+        "difficulty": "Advanced",
+        "estimated_learning_time": "4-8 weeks"
+      }
+    },
+    "recommended": {
+      "Docker": {
+        "weight": 2,
+        "category": "DevOps",
+        "reason": "Docker simplifies deployment of machine learning applications.",
+        "priority": "Low",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "AWS": {
+        "weight": 3,
+        "category": "Cloud",
+        "reason": "Cloud platforms are commonly used for ML training and deployment.",
+        "priority": "Medium",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    },
+    "advanced": {
+      "MLflow": {
+        "weight": 5,
+        "category": "MLOps",
+        "reason": "MLflow manages the machine learning lifecycle.",
+        "priority": "Critical",
+        "difficulty": "Advanced",
+        "estimated_learning_time": "4-8 weeks"
+      },
+      "ONNX": {
+        "weight": 4,
+        "category": "MLOps",
+        "reason": "ONNX enables interoperability across machine learning frameworks.",
+        "priority": "High",
+        "difficulty": "Advanced",
+        "estimated_learning_time": "4-8 weeks"
+      },
+      "Hugging Face": {
+        "weight": 5,
+        "category": "Framework",
+        "reason": "Hugging Face is the leading ecosystem for NLP and Generative AI.",
+        "priority": "Critical",
+        "difficulty": "Advanced",
+        "estimated_learning_time": "4-8 weeks"
+      }
+    }
+  },
+  "Data Science": {
+    "required": {
+      "Python": {
+        "weight": 3,
+        "category": "Language",
+        "reason": "Python is the primary programming language for data science.",
+        "priority": "Medium",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      },
+      "NumPy": {
+        "weight": 4,
+        "category": "Library",
+        "reason": "NumPy enables efficient numerical analysis.",
+        "priority": "High",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      },
+      "Pandas": {
+        "weight": 4,
+        "category": "Library",
+        "reason": "Pandas is essential for cleaning and analyzing datasets.",
+        "priority": "High",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      },
+      "SQL": {
+        "weight": 3,
+        "category": "Database",
+        "reason": "SQL is required for querying structured datasets.",
+        "priority": "Medium",
+        "difficulty": "Beginner",
+        "estimated_learning_time": "1-2 weeks"
+      }
+    },
+    "frameworks": {
+      "Scikit-learn": {
+        "weight": 4,
+        "category": "Library",
+        "reason": "Scikit-learn provides machine learning algorithms for data analysis.",
+        "priority": "High",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    },
+    "recommended": {
+      "Tableau": {
+        "weight": 3,
+        "category": "Visualization",
+        "reason": "Tableau is widely used for business intelligence and dashboards.",
+        "priority": "Medium",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      },
+      "Power BI": {
+        "weight": 3,
+        "category": "Visualization",
+        "reason": "Power BI helps communicate insights through interactive dashboards.",
+        "priority": "Medium",
+        "difficulty": "Intermediate",
+        "estimated_learning_time": "2-4 weeks"
+      }
+    },
+    "advanced": {
+      "Spark": {
+        "weight": 5,
+        "category": "Big Data",
+        "reason": "Apache Spark processes large-scale datasets efficiently.",
+        "priority": "Critical",
+        "difficulty": "Advanced",
+        "estimated_learning_time": "4-8 weeks"
+      },
+      "Airflow": {
+        "weight": 4,
+        "category": "Data Engineering",
+        "reason": "Airflow automates and orchestrates complex data workflows.",
+        "priority": "High",
+        "difficulty": "Advanced",
+        "estimated_learning_time": "4-8 weeks"
+      }
+    }
+  }
+}
