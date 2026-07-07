@@ -7,7 +7,9 @@
     <title>Resume Results | ResumeIQ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
@@ -49,7 +51,8 @@
             <div class="hero-summary">
                 <p class="section-label">ATS Insights</p>
                 <h1>Premium resume analytics for every application.</h1>
-                <p class="section-description">This dashboard shows your ATS compatibility, resume strength, missing keywords, and AI-driven opportunities so you can apply with confidence.</p>
+                <p class="section-description">This dashboard shows your ATS compatibility, resume strength, missing
+                    keywords, and AI-driven opportunities so you can apply with confidence.</p>
                 <div class="hero-metrics">
                     <div class="hero-metric">
                         <span>Resume Quality</span>
@@ -66,13 +69,14 @@
                 </div>
             </div>
 
-            <div class="hero-score-card">
+            <div class="hero-score-card"
+                data-score="{{ analysis.ats.overall_score }}">
                 <div class="score-card-top">
                     <div>
                         <p class="score-label">ATS Score</p>
-                        <h2>92%</h2>
+                        <h2>{{ analysis.ats.overall_score }}%</h2>
                     </div>
-                    <span class="score-pill">Match: 87%</span>
+                    <span class="score-pill">ATS: {{ analysis.ats.overall_score }}%</span>
                 </div>
                 <div class="circular-chart-wrap">
                     <svg class="circular-chart blue" viewBox="0 0 36 36" aria-hidden="true">
@@ -82,99 +86,101 @@
                                 <stop offset="100%" stop-color="#a78bfa" />
                             </linearGradient>
                         </defs>
-                        <path class="circle-bg"
-                            d="M18 2.0845
+                        <path class="circle-bg" d="M18 2.0845
                     a 15.9155 15.9155 0 0 1 0 31.831
                     a 15.9155 15.9155 0 0 1 0 -31.831" />
-                        <path class="circle" stroke-dasharray="92, 100"
-                            d="M18 2.0845
+                        <path class="circle" stroke-dasharray="92, 100" d="M18 2.0845
                     a 15.9155 15.9155 0 0 1 0 31.831
                     a 15.9155 15.9155 0 0 1 0 -31.831" />
                         <text x="18" y="20.35" class="percentage">0%</text>
                     </svg>
                 </div>
                 <div class="score-details">
+
                     <div class="score-detail">
-                        <span>Resume Quality</span>
-                        <strong>Excellent</strong>
+                        <span>Overall ATS</span>
+                        <strong>{{ analysis.ats.overall_score }}%</strong>
                     </div>
+
                     <div class="score-detail">
-                        <span>ATS Compatible</span>
-                        <strong>92%</strong>
+                        <span>Skills Score</span>
+                        <strong>
+                            {{ analysis.ats.breakdown.skills.score }}/{{ analysis.ats.breakdown.skills.max }}
+                        </strong>
                     </div>
+
                     <div class="score-detail">
-                        <span>AI Confidence</span>
-                        <strong>High</strong>
+                        <span>Readability</span>
+                        <strong>
+                            {{ analysis.ats.breakdown.readability.score }}/{{ analysis.ats.breakdown.readability.max }}
+                        </strong>
                     </div>
+
                 </div>
             </div>
         </section>
 
         <section class="analytics-grid">
+
+            {% set metrics = [
+            ("📈", "Skills", analysis.ats.breakdown.skills),
+            ("🛡️", "Sections", analysis.ats.breakdown.sections),
+            ("🤖", "Structure", analysis.ats.breakdown.structure),
+            ("🔑", "Technical Profile", analysis.ats.breakdown.technical_profile),
+            ("📝", "Readability", analysis.ats.breakdown.readability)
+            ] %}
+
+            {% for icon, label, metric in metrics %}
+
             <article class="analytics-card">
-                <div class="card-icon">📈</div>
-                <p class="card-label">Resume Quality</p>
-                <strong>92%</strong>
+
+                <div class="card-icon">{{ icon }}</div>
+
+                <p class="card-label">{{ label }}</p>
+
+                <strong>{{ metric.score }}/{{ metric.max }}</strong>
+
                 <div class="card-progress">
-                    <span class="result-progress-fill" data-fill="92"></span>
+
+                    <span class="result-progress-fill" data-fill="{{ ((metric.score / metric.max) * 100) | round }}">
+                    </span>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+            <article class="analytics-card">
+                <div class="card-icon">🟡</div>
+                <p class="card-label">Metadata</p>
+                <strong>Coming Soon</strong>
+
+                <div class="card-progress">
+                    <span class="result-progress-fill" data-fill="0"></span>
                 </div>
             </article>
+
             <article class="analytics-card">
-                <div class="card-icon">🛡️</div>
-                <p class="card-label">ATS Compatibility</p>
-                <strong>89%</strong>
+                <div class="card-icon">📄</div>
+                <p class="card-label">JD Match</p>
+                <strong>Coming Soon</strong>
+
                 <div class="card-progress">
-                    <span class="result-progress-fill" data-fill="89"></span>
+                    <span class="result-progress-fill" data-fill="0"></span>
                 </div>
             </article>
+
             <article class="analytics-card">
-                <div class="card-icon">🤖</div>
-                <p class="card-label">AI Confidence</p>
-                <strong>85%</strong>
+                <div class="card-icon">🤝</div>
+                <p class="card-label">AI Coach</p>
+                <strong>Coming Soon</strong>
+
                 <div class="card-progress">
-                    <span class="result-progress-fill" data-fill="85"></span>
+                    <span class="result-progress-fill" data-fill="0"></span>
                 </div>
             </article>
-            <article class="analytics-card">
-                <div class="card-icon">🔑</div>
-                <p class="card-label">Keyword Match</p>
-                <strong>87%</strong>
-                <div class="card-progress">
-                    <span class="result-progress-fill" data-fill="87"></span>
-                </div>
-            </article>
-            <article class="analytics-card">
-                <div class="card-icon">📝</div>
-                <p class="card-label">Readability</p>
-                <strong>78%</strong>
-                <div class="card-progress">
-                    <span class="result-progress-fill" data-fill="78"></span>
-                </div>
-            </article>
-            <article class="analytics-card">
-                <div class="card-icon">🎨</div>
-                <p class="card-label">Formatting</p>
-                <strong>81%</strong>
-                <div class="card-progress">
-                    <span class="result-progress-fill" data-fill="81"></span>
-                </div>
-            </article>
-            <article class="analytics-card">
-                <div class="card-icon">💼</div>
-                <p class="card-label">Experience Quality</p>
-                <strong>88%</strong>
-                <div class="card-progress">
-                    <span class="result-progress-fill" data-fill="88"></span>
-                </div>
-            </article>
-            <article class="analytics-card">
-                <div class="card-icon">🧠</div>
-                <p class="card-label">Skill Coverage</p>
-                <strong>90%</strong>
-                <div class="card-progress">
-                    <span class="result-progress-fill" data-fill="90"></span>
-                </div>
-            </article>
+
         </section>
 
         <section class="panels-row">

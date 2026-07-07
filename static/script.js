@@ -151,7 +151,11 @@ function animateResultPage() {
 
     const resultCircle = document.querySelector('.circular-chart .circle');
     const resultText = document.querySelector('.circular-chart .percentage');
-    const resultTarget = 92;
+    const resultCard = document.querySelector(".hero-score-card");
+
+    const resultTarget = resultCard
+        ? Number(resultCard.dataset.score)
+        : 0;
 
     if (heroCircle && heroText && heroTarget) {
         animateCircularRing(heroCircle, heroText, heroTarget);

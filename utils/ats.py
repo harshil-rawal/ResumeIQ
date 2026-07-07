@@ -389,7 +389,32 @@ def calculate_ats_score(raw_text, skills, statistics):
     return {
         "overall_score": overall_score,
 
-        "breakdown": scores,
+        "breakdown": {
+            "skills": {
+                "score": scores["skills"],
+                "max": ATS_WEIGHTS["skills"]
+            },
+
+            "sections": {
+                "score": scores["sections"],
+                "max": ATS_WEIGHTS["sections"]
+            },
+
+            "structure": {
+                "score": scores["structure"],
+                "max": ATS_WEIGHTS["structure"]
+            },
+
+           "technical_profile": {
+                "score": scores["technical_profile"],
+                "max": ATS_WEIGHTS["technical_profile"]
+            },
+
+            "readability": {
+                "score": scores["readability"],
+                "max": ATS_WEIGHTS["readability"]
+            }
+        },
         
         "report": generate_report(scores),
         
