@@ -21,6 +21,9 @@ def upload_page():
 def upload():
 
     resume = request.files["resume"]
+    
+    if not resume.filename:
+        return "No file selected.", 400
 
     filepath = os.path.join(UPLOAD_FOLDER, resume.filename)
 
