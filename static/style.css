@@ -677,20 +677,43 @@ body{
 
 .suggestions-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 .suggestion-card {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
+    flex-direction: column;
+
     gap: 16px;
-    align-items: center;
+
     padding: 22px;
+
     border-radius: 24px;
+
     background: rgba(255,255,255,0.04);
+
     border: 1px solid rgba(255,255,255,0.08);
-    transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+
+    transition: transform var(--ease),
+                box-shadow var(--ease),
+                border-color var(--ease);
+}
+
+.suggestion-header{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+}
+
+.suggestion-title{
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
 }
 
 .suggestion-card:hover {
@@ -709,24 +732,106 @@ body{
     font-size: 20px;
 }
 
-.suggestion-card h4 {
-    margin: 0 0 6px;
-    color: #ffffff;
+.suggestion-title h4{
+
+    margin:0;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    line-height:1.35;
+
+    color:#ffffff;
 }
 
-.suggestion-card p {
+.suggestion-reason {
+
     margin: 0;
+
     color: var(--text-secondary);
+
     font-size: 14px;
+
+    line-height: 1.6;
 }
 
-.priority-badge {
-    padding: 10px 14px;
-    border-radius: 999px;
-    background: rgba(59,130,246,0.14);
-    color: #7dd3fc;
-    font-size: 12px;
-    font-weight: 700;
+.priority-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:max-content;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    background:rgba(59,130,246,.14);
+
+    color:#7dd3fc;
+
+    font-size:11px;
+
+    font-weight:700;
+}
+
+.suggestion-subtitle{
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    color:var(--text-secondary);
+}
+
+.suggestion-actions{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.suggestion-actions li{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+.skill-name{
+
+    font-weight:600;
+}
+
+.learning-time{
+
+    margin-left:auto;
+
+    color:var(--text-secondary);
+
+    font-size:12px;
+
+    white-space:nowrap;
 }
 
 .insights-grid {

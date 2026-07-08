@@ -69,8 +69,7 @@
                 </div>
             </div>
 
-            <div class="hero-score-card"
-                data-score="{{ analysis.ats.overall_score }}">
+            <div class="hero-score-card" data-score="{{ analysis.ats.overall_score }}">
                 <div class="score-card-top">
                     <div>
                         <p class="score-label">ATS Score</p>
@@ -187,13 +186,42 @@
             <div class="panel panel-skills">
                 <div class="panel-header">
                     <h3>Detected Skills</h3>
-                    <p>Skills found in your resume.</p>
+                    <p>
+
+                        {{ analysis.statistics.total_skills }}
+
+                        skills detected across
+
+                        {{ analysis.statistics.total_categories }}
+
+                        categories.
+
+                    </p>
                 </div>
                 <div class="skill-badges">
-                    <span class="skill-pill">Python</span>
-                    <span class="skill-pill">Flask</span>
-                    <span class="skill-pill">SQL</span>
-                    <span class="skill-pill">Git</span>
+
+                    {% if analysis.skills %}
+
+                    {% for category, skills in analysis.skills.items() %}
+
+                    {% for skill in skills %}
+
+                    <span class="skill-pill">
+                        {{ skill }}
+                    </span>
+
+                    {% endfor %}
+
+                    {% endfor %}
+
+                    {% else %}
+
+                    <span class="skill-pill">
+                        No skills detected
+                    </span>
+
+                    {% endif %}
+
                 </div>
             </div>
             <div class="panel panel-missing">
@@ -215,82 +243,137 @@
                 <p>Strategic recommendations to make your resume stand out.</p>
             </div>
             <div class="suggestions-grid">
+                {% for suggestion in analysis.ats.improvement_plan.high_priority %}
+
                 <article class="suggestion-card">
-                    <div class="suggestion-icon">⚡</div>
-                    <div>
-                        <h4>Quantify achievements</h4>
-                        <p>Use metrics to show impact and strengthen each bullet point.</p>
+
+                    <div class="suggestion-header">
+
+                        <div class="suggestion-icon">
+                            🚀
+                        </div>
+
+                        <div class="suggestion-title">
+
+                            <h4>{{ suggestion.title }}</h4>
+
+                            <span class="priority-badge">
+                                {{ suggestion.priority.replace("_", " ")|title }}
+                            </span>
+
+                        </div>
+
                     </div>
-                    <span class="priority-badge">High</span>
-                </article>
-                <article class="suggestion-card">
-                    <div class="suggestion-icon">🧾</div>
-                    <div>
-                        <h4>Improve summary</h4>
-                        <p>Refresh your summary with concise results and key strengths.</p>
+
+                    <p class="suggestion-reason">
+                        {{ suggestion.reason }}
+                    </p>
+
+                    {% if suggestion.actions %}
+
+                    <div class="suggestion-subtitle">
+                        Recommended Technologies
                     </div>
-                    <span class="priority-badge">Medium</span>
+
+                    <ul class="suggestion-actions">
+
+                        {% for action in suggestion.actions %}
+
+                        <li>
+
+                            <span class="skill-name">
+                                ✓ {{ action.skill }}
+                            </span>
+
+                            <span class="learning-time">
+                                {{ action.estimated_learning_time }}
+                            </span>
+
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                    {% endif %}
+
                 </article>
-                <article class="suggestion-card">
-                    <div class="suggestion-icon">☁️</div>
-                    <div>
-                        <h4>Add cloud technologies</h4>
-                        <p>Highlight AWS, Docker, Kubernetes, or Azure experience.</p>
-                    </div>
-                    <span class="priority-badge">Medium</span>
-                </article>
+
+                {% endfor %}
+
             </div>
+
         </section>
 
         <section class="insights-section">
             <div class="section-heading">
                 <h2>Resume Insights</h2>
-                <p>High-level observations from the AI review.</p>
+                    <p>High-level observations from the AI review.</p>
             </div>
             <div class="insights-grid">
-                <article class="insight-card success">
-                    <div class="insight-icon">✅</div>
-                    <div>
-                        <h4>Strong Technical Skills</h4>
-                        <p>Your resume highlights technical experience clearly and effectively.</p>
-                    </div>
-                </article>
-                <article class="insight-card warning">
-                    <div class="insight-icon">⚠️</div>
-                    <div>
-                        <h4>Missing Cloud Experience</h4>
-                        <p>Add cloud platforms to better match modern job descriptions.</p>
-                    </div>
-                </article>
-                <article class="insight-card warning">
-                    <div class="insight-icon">🚀</div>
-                    <div>
-                        <h4>Improve Quantified Achievements</h4>
-                        <p>Use more data points to showcase your impact in each role.</p>
-                    </div>
-                </article>
-                <article class="insight-card neutral">
-                    <div class="insight-icon">✍️</div>
-                    <div>
-                        <h4>Better Action Verbs</h4>
-                        <p>Start bullets with stronger verbs like “Led”, “Built”, “Improved”.</p>
-                    </div>
-                </article>
-                <article class="insight-card success">
-                    <div class="insight-icon">🧾</div>
-                    <div>
-                        <h4>ATS Formatting Good</h4>
-                        <p>Your formatting is clean and compatible with most ATS parsers.</p>
-                    </div>
-                </article>
+
+                {% for item in analysis.ats.report.strength %}
+
+                    <article class="insight-card success">
+
+                        <div class="insight-icon">✅</div>
+
+                        <div>
+
+                            <h4>{{ item.title }}</h4>
+
+                            <p>{{ item.message }}</p>
+
+                        </div>
+
+                    </article>
+
+                    {% endfor %}
+
+                    {% for item in analysis.ats.report.warning %}
+
+                    <article class="insight-card warning">
+
+                        <div class="insight-icon">⚠️</div>
+
+                        <div>
+
+                            <h4>{{ item.title }}</h4>
+
+                            <p>{{ item.message }}</p>
+
+                        </div>
+
+                    </article>
+
+                    {% endfor %}
+
+                    {% for item in analysis.ats.report.weakness %}
+
+                    <article class="insight-card neutral">
+
+                        <div class="insight-icon">❌</div>
+
+                        <div>
+
+                            <h4>{{ item.title }}</h4>
+
+                            <p>{{ item.message }}</p>
+
+                        </div>
+
+                    </article>
+
+                    {% endfor %}
+
             </div>
         </section>
 
-        <section class="result-actions">
-            <button class="btn btn-primary" id="download-report">Download Report</button>
-            <a href="/upload-page" class="btn btn-secondary">Analyze Another Resume</a>
-            <a href="/" class="btn btn-secondary">Go Home</a>
-        </section>
+                <section class="result-actions">
+                    <button class="btn btn-primary" id="download-report">Download Report</button>
+                    <a href="/upload-page" class="btn btn-secondary">Analyze Another Resume</a>
+                    <a href="/" class="btn btn-secondary">Go Home</a>
+                </section>
     </main>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
