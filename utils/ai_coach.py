@@ -59,6 +59,7 @@ def generate_ai_feedback(result):
             "summary": "AI feedback is temporarily unavailable.",
             "strengths": [],
             "improvements": [],
+            "next_steps": [],
             "status": "unavailable"
         }
 

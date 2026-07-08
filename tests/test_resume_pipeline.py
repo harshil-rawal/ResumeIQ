@@ -36,7 +36,7 @@ def test_complete_resume_pipeline():
     domains = detect_domains(skills)
 
     planner = generate_improvement_plan(
-        ats["breakdown"],
+        ats["scores"],
         domains
     )
 

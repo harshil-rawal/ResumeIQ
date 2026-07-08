@@ -388,6 +388,8 @@ def calculate_ats_score(raw_text, skills, statistics):
 
     return {
         "overall_score": overall_score,
+        
+        "scores": scores,
 
         "breakdown": {
             "skills": {
@@ -416,7 +418,7 @@ def calculate_ats_score(raw_text, skills, statistics):
             }
         },
         
-        "report": generate_report(scores),
+        "report": report,
         
         "detected_domains": detected_domains,
         "improvement_plan": improvement_plan
