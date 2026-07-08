@@ -53,7 +53,18 @@ def generate_ai_feedback(result):
 
     response = client.generate(prompt)
 
-    feedback = parse_ai_response(response)
+    if response is None:
+
+        feedback = {
+            "summary": "AI feedback is temporarily unavailable.",
+            "strengths": [],
+            "improvements": [],
+            "status": "unavailable"
+        }
+
+    else:
+
+        feedback = parse_ai_response(response)
 
     return {
         "prompt": prompt,

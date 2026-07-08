@@ -16,10 +16,21 @@ class GeminiClient:
         )
 
     def generate(self, prompt):
+        """
+        Generate response from Gemini.
+        """
 
-        response = self.client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt
-        )
+        try:
 
-        return response.text
+            response = self.client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt
+            )
+
+            return response.text
+
+        except Exception as e:
+
+            print(f"[Gemini Error] {e}")
+
+            return None
