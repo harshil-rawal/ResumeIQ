@@ -4,12 +4,13 @@ from datetime import datetime
 
 
 def get_file_info(filepath: str) -> dict:
-    if not os.path.exists(filepath):
-    raise FileNotFoundError(f"File not found: {filepath}")
-
     """
     Extract metadata from a resume PDF.
     """
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(f"File not found: {filepath}")
+
+
 
     filename = os.path.basename(filepath)
     extension = os.path.splitext(filename)[1]
