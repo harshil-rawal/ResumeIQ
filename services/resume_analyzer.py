@@ -4,8 +4,10 @@ from utils.nlp_utils import generate_all_ngrams
 from utils.skills import extract_skills, generate_skill_statistics
 from utils.ats import calculate_ats_score
 from utils.ai_coach import generate_ai_feedback
+from utils.jd_matcher import match_job_description
+from utils.job_description_parser import parse_job_description
 
-def analyze_resume(filepath):
+def analyze_resume(filepath, job_description=None):
     """
     Complete Resume Analysis Pipeline.
     """
@@ -33,6 +35,17 @@ def analyze_resume(filepath):
     
     ai_feedback = generate_ai_feedback(ats)
 
+    jd_match = None
+
+    if job_description:
+
+        jd_skills = parse_job_description(job_description)
+
+        jd_match = match_job_description(
+            skills,
+            jd_skills
+        )
+
     # Return complete analysis
     return {
         "raw_text": raw_text,
@@ -41,5 +54,6 @@ def analyze_resume(filepath):
         "skills": skills,
         "statistics": statistics,
         "ats": ats,
-        "ai_feedback": ai_feedback["feedback"]
+        "ai_feedback": ai_feedback["feedback"],
+        "jd_match": jd_match
     }
