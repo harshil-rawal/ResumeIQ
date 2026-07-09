@@ -114,12 +114,62 @@ def build_prompt(result):
         format_domains(result),
         format_planner(result),
         "",
+        
+
+        (
+            "Base your recommendations primarily on:\n"
+            "1. High Priority improvement plan.\n"
+            "2. Detected technical domains.\n"
+            "3. ATS weaknesses.\n"
+            "4. ATS warnings.\n\n"
+        ),
+
         (
             "Respond ONLY with valid JSON.\n"
-            "Do not include markdown.\n"
-            "Do not include code fences.\n"
-            "Do not include any explanation.\n\n"
-            "Return exactly this structure:\n\n"
+            "Do NOT include markdown.\n"
+            "Do NOT include code fences.\n"
+            "Do NOT explain the JSON.\n\n"
+
+            "Writing Rules:\n"
+
+            "- Write concise dashboard-friendly content.\n"
+            "- Avoid repeating the same advice.\n"
+            "- Mention technologies only if supported by the ATS analysis.\n"
+            "- Use professional and encouraging language.\n"
+            "- Personalize the advice using the detected domains.\n"
+            "- Mention backend, frontend, AI, cloud, or data science only when detected.\n"
+            "- Never recommend technologies unrelated to the detected profile.\n"
+            "- Do not invent scores or skills.\n\n"
+
+            "Summary Rules:\n"
+
+            "- Maximum 40 words.\n"
+            "- Mention one major strength and one major improvement area.\n"
+            "- Write as one short paragraph.\n\n"
+
+            "Strength Rules:\n"
+
+            "- Exactly 4 strengths.\n"
+            "- Maximum 10 words each.\n"
+            "- No explanations.\n"
+            "- No repeated ideas.\n\n"
+
+            "Improvement Rules:\n"
+
+            "- Exactly 4 improvements.\n"
+            "- Begin each item with an action verb.\n"
+            "- Maximum 12 words each.\n"
+            "- Be specific.\n\n"
+
+            "Next Step Rules:\n"
+
+            "- Exactly 4 next steps.\n"
+            "- Maximum 15 words each.\n"
+            "- Order from highest priority to lowest.\n"
+            "- Each step should be actionable.\n\n"
+
+            "Return EXACTLY this JSON:\n\n"
+
             "{\n"
             '  "summary": "",\n'
             '  "strengths": [],\n'

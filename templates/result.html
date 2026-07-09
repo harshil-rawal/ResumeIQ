@@ -171,13 +171,167 @@
             </article>
 
             <article class="analytics-card">
+
                 <div class="card-icon">🤝</div>
-                <p class="card-label">AI Coach</p>
-                <strong>Coming Soon</strong>
+
+                <p class="card-label">
+                    AI Coach
+                </p>
+
+                <strong>
+                    Ready
+                </strong>
 
                 <div class="card-progress">
-                    <span class="result-progress-fill" data-fill="0"></span>
+                    <span class="result-progress-fill" data-fill="100">
+                    </span>
                 </div>
+
+            </article>
+
+        </section>
+
+        <section class="ai-coach-section">
+
+            <div class="coach-header">
+
+                <div class="coach-title">
+
+                    <span class="coach-badge">
+                        🤖 Powered by Gemini
+                    </span>
+
+                    <h2>AI Career Coach</h2>
+
+                    <p>
+                        Personalized career guidance generated from your ATS analysis,
+                        skills profile, and resume structure.
+                    </p>
+
+                </div>
+
+                <div class="coach-status">
+
+                    <div class="status-circle">
+                        ✨
+                    </div>
+
+                    <span>
+                        AI Analysis Complete
+                    </span>
+
+                </div>
+
+            </div>
+
+            <article class="coach-summary-card">
+
+                <div class="summary-top">
+
+                    <div>
+
+                        <h3>🧠 Executive Summary</h3>
+
+                        <p class="summary-score">
+
+                            Overall ATS Score
+
+                            <span>
+
+                                {{ analysis.ats.overall_score }}/100
+
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="summary-body">
+
+                    <p>
+
+                        {{ analysis.ai_feedback.summary }}
+
+                    </p>
+
+                </div>
+
+            </article>
+
+            <div class="coach-grid">
+
+                <article class="coach-card">
+
+                    <h3>✅ Strengths</h3>
+
+                    <ul class="coach-list">
+
+                        {% for item in analysis.ai_feedback.strengths %}
+
+                        <li>{{ item }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </article>
+
+                <article class="coach-card">
+
+                    <h3>🚀 Improvements</h3>
+
+                    <ul class="coach-list">
+
+                        {% for item in analysis.ai_feedback.improvements %}
+
+                        <li>{{ item }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </article>
+
+            </div>
+
+            <article class="coach-next-card">
+
+                <h3>🎯 Next Steps</h3>
+
+                <div class="roadmap-list">
+
+                    {% for item in analysis.ai_feedback.next_steps %}
+
+                    <div class="roadmap-item">
+
+                        <div class="roadmap-number">
+
+                            {{ loop.index }}
+
+                        </div>
+
+                        <div class="roadmap-content">
+
+                            {{ item }}
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+                <!-- {% for item in analysis.ai_feedback.next_steps %}
+
+                <li>{{ item }}</li>
+
+                {% endfor %}
+
+                </ol> -->
+
             </article>
 
         </section>
@@ -308,72 +462,72 @@
         <section class="insights-section">
             <div class="section-heading">
                 <h2>Resume Insights</h2>
-                    <p>High-level observations from the AI review.</p>
+                <p>High-level observations from the AI review.</p>
             </div>
             <div class="insights-grid">
 
                 {% for item in analysis.ats.report.strength %}
 
-                    <article class="insight-card success">
+                <article class="insight-card success">
 
-                        <div class="insight-icon">✅</div>
+                    <div class="insight-icon">✅</div>
 
-                        <div>
+                    <div>
 
-                            <h4>{{ item.title }}</h4>
+                        <h4>{{ item.title }}</h4>
 
-                            <p>{{ item.message }}</p>
+                        <p>{{ item.message }}</p>
 
-                        </div>
+                    </div>
 
-                    </article>
+                </article>
 
-                    {% endfor %}
+                {% endfor %}
 
-                    {% for item in analysis.ats.report.warning %}
+                {% for item in analysis.ats.report.warning %}
 
-                    <article class="insight-card warning">
+                <article class="insight-card warning">
 
-                        <div class="insight-icon">⚠️</div>
+                    <div class="insight-icon">⚠️</div>
 
-                        <div>
+                    <div>
 
-                            <h4>{{ item.title }}</h4>
+                        <h4>{{ item.title }}</h4>
 
-                            <p>{{ item.message }}</p>
+                        <p>{{ item.message }}</p>
 
-                        </div>
+                    </div>
 
-                    </article>
+                </article>
 
-                    {% endfor %}
+                {% endfor %}
 
-                    {% for item in analysis.ats.report.weakness %}
+                {% for item in analysis.ats.report.weakness %}
 
-                    <article class="insight-card neutral">
+                <article class="insight-card neutral">
 
-                        <div class="insight-icon">❌</div>
+                    <div class="insight-icon">❌</div>
 
-                        <div>
+                    <div>
 
-                            <h4>{{ item.title }}</h4>
+                        <h4>{{ item.title }}</h4>
 
-                            <p>{{ item.message }}</p>
+                        <p>{{ item.message }}</p>
 
-                        </div>
+                    </div>
 
-                    </article>
+                </article>
 
-                    {% endfor %}
+                {% endfor %}
 
             </div>
         </section>
 
-                <section class="result-actions">
-                    <button class="btn btn-primary" id="download-report">Download Report</button>
-                    <a href="/upload-page" class="btn btn-secondary">Analyze Another Resume</a>
-                    <a href="/" class="btn btn-secondary">Go Home</a>
-                </section>
+        <section class="result-actions">
+            <button class="btn btn-primary" id="download-report">Download Report</button>
+            <a href="/upload-page" class="btn btn-secondary">Analyze Another Resume</a>
+            <a href="/" class="btn btn-secondary">Go Home</a>
+        </section>
     </main>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
