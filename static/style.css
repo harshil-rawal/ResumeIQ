@@ -2810,3 +2810,275 @@ body {
     line-height:1.7;
 
 }
+
+/* ================= CAREER DOMAINS ================= */
+
+.career-domains-section{
+
+    margin:64px 0;
+
+}
+
+.domains-grid{
+
+    display:grid;
+
+    gap:30px;
+
+}
+
+.domain-card{
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-left:4px solid var(--primary);
+
+    border-radius:28px;
+
+    padding:32px;
+
+    transition:.3s;
+
+}
+
+.domain-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:rgba(59,130,246,.25);
+
+}
+
+.domain-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+
+}
+
+.domain-header h3{
+
+    margin:0;
+
+}
+
+.domain-score{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    line-height:1;
+
+    color:var(--primary);
+
+}
+
+.domain-confidence-label{
+
+    color:var(--text-secondary);
+
+    margin-top:4px;
+
+}
+
+.domain-progress{
+
+    height:10px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.06);
+
+    overflow:hidden;
+
+    margin-bottom:34px;
+
+}
+
+.domain-progress-fill{
+
+    height:100%;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        #3b82f6,
+        #8b5cf6
+    );
+
+    transition:width .8s ease;
+
+    
+
+    width: var(--progress);
+
+
+
+}
+
+.domain-content{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:32px;
+
+}
+
+.domain-content h4{
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:var(--text-primary);
+
+    margin-bottom:16px;
+
+    letter-spacing:.3px;
+
+}
+
+.domain-score-container{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+}
+
+.domain-ratio{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    margin-top:10px;
+
+}
+
+.domain-meta{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:18px 0 30px;
+
+}
+
+.domain-ratio-inline{
+
+    font-size:14px;
+
+    color:var(--text-secondary);
+
+    font-weight:600;
+
+}
+
+.ratio-value{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:var(--text-primary);
+
+}
+
+.ratio-label{
+
+    font-size:12px;
+
+    color:var(--text-secondary);
+
+}
+
+.confidence-badge{
+
+display:inline-block;
+
+margin-top:10px;
+
+padding:5px 12px;
+
+border-radius:999px;
+
+font-size:12px;
+
+font-weight:600;
+
+}
+
+.confidence-badge.high{
+
+background:rgba(34,197,94,.15);
+
+color:#4ade80;
+
+}
+
+.confidence-badge.medium{
+
+background:rgba(245,158,11,.15);
+
+color:#fbbf24;
+
+}
+
+.confidence-badge.low{
+
+background:rgba(239,68,68,.15);
+
+color:#f87171;
+
+}
+
+.primary-domain-badge{
+
+    display:inline-flex;
+
+    padding:6px 14px;
+
+    margin-bottom:14px;
+
+    border-radius:999px;
+
+    background:rgba(34,197,94,.15);
+
+    color:#4ade80;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    border:1px solid rgba(34,197,94,.3);
+
+}
+
+@media(max-width:900px){
+
+.domain-content{
+
+grid-template-columns:1fr;
+
+}
+
+}

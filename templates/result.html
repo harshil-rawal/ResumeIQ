@@ -324,15 +324,150 @@
 
                 </div>
 
-                <!-- {% for item in analysis.ai_feedback.next_steps %}
 
-                <li>{{ item }}</li>
+
+            </article>
+
+        </section>
+
+        <section class="career-domains-section">
+
+            <div class="section-heading">
+
+                <h2>🧭 Detected Career Domains</h2>
+
+                <p>
+                    ResumeIQ analyzed your resume and identified the technology domains
+                    that best match your profile.
+                </p>
+
+            </div>
+
+            <div class="domains-grid">
+
+                {% for domain_name, domain in analysis.ats.detected_domains.items() %}
+
+                <article class="domain-card">
+
+                    <div class="domain-header">
+
+                        <div>
+
+                            {% if loop.first %}
+                            <span class="primary-domain-badge">
+                                Primary Domain
+                            </span>
+                            {% endif %}
+
+                            <h3>{{ domain_name }}</h3>
+
+                            <p class="domain-confidence-label">
+
+                                Confidence Match
+
+                            </p>
+
+                        </div>
+
+                        
+
+                        <span class="domain-score">
+
+                            {{ (domain.confidence * 100)|round|int }}%
+
+                        </span>
+
+                    </div>
+
+                    <div class="domain-meta">
+                            <span class="confidence-badge
+                                {% if domain.confidence >= 0.70 %}
+                                    high
+                                {% elif domain.confidence >= 0.40 %}
+                                    medium
+                                {% else %}
+                                    low
+                                {% endif %}
+                            ">
+
+                                {% if domain.confidence >= 0.70 %}
+                                High Match
+                                {% elif domain.confidence >= 0.40 %}
+                                Medium Match
+                                {% else %}
+                                Growing Match
+                                {% endif %}
+
+                            </span>
+
+                           
+
+                            <span class="domain-ratio-inline">
+
+                                Core Skills:
+                                {{ domain.domain_score }}/{{ domain.domain_max }}
+
+                            </span>
+                
+                    </div>
+
+                    <div class="domain-progress">
+
+                        <div class="domain-progress-fill"
+                            style="--progress: {{ (domain.confidence * 100)|round|int }}%;">
+                        </div>
+
+                    </div>
+
+                    <div class="domain-content">
+
+                        <div class="matched-skills">
+
+                            <h4>Matched Skills</h4>
+
+                            <div class="skill-badges">
+
+                                {% for skill in domain.matched_skills %}
+
+                                <span class="skill-pill">
+
+                                    {{ skill }}
+
+                                </span>
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                        <div class="missing-preview">
+
+                            <h4>Top Missing Skills</h4>
+
+                            <div class="keyword-chips">
+
+                                {% for skill in domain.missing_skills[:3] %}
+
+                                <span class="keyword-chip">
+
+                                    {{ skill.skill }}
+
+                                </span>
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
 
                 {% endfor %}
 
-                </ol> -->
-
-            </article>
+            </div>
 
         </section>
 
@@ -384,9 +519,29 @@
                     <p>Boost your match rate by adding these terms.</p>
                 </div>
                 <div class="keyword-chips">
-                    <span class="keyword-chip">Docker</span>
-                    <span class="keyword-chip">AWS</span>
-                    <span class="keyword-chip">Kubernetes</span>
+
+                    {% if analysis.top_missing_skills %}
+
+                    {% for skill in analysis.top_missing_skills %}
+
+                    <span class="keyword-chip">
+
+                        {{ skill.skill }}
+
+                    </span>
+
+                    {% endfor %}
+
+                    {% else %}
+
+                    <span class="keyword-chip">
+
+                        No major missing skills 🎉
+
+                    </span>
+
+                    {% endif %}
+
                 </div>
             </div>
         </section>
