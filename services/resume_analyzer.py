@@ -7,7 +7,27 @@ from utils.ai_coach import generate_ai_feedback
 from utils.jd_matcher import match_job_description
 from utils.job_description_parser import parse_job_description
 
+
+
+def get_top_missing_skills(detected_domains, limit=5):
+
+        skills = []
+
+        for domain in detected_domains.values():
+
+            skills.extend(domain["missing_skills"])
+
+        skills.sort(
+            key=lambda x: x["weight"],
+            reverse=True
+        )
+
+        return skills[:limit]
+    
 def analyze_resume(filepath, job_description=None):
+
+
+
     """
     Complete Resume Analysis Pipeline.
     """
@@ -33,7 +53,12 @@ def analyze_resume(filepath, job_description=None):
         statistics
     )
     
+    
     ai_feedback = generate_ai_feedback(ats)
+    
+    top_missing_skills = get_top_missing_skills(
+        ats["detected_domains"]
+    )
 
     jd_match = None
 
@@ -55,5 +80,6 @@ def analyze_resume(filepath, job_description=None):
         "statistics": statistics,
         "ats": ats,
         "ai_feedback": ai_feedback["feedback"],
+        "top_missing_skills": top_missing_skills,
         "jd_match": jd_match
     }
