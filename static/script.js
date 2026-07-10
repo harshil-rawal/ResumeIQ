@@ -164,7 +164,9 @@ function animateResultPage() {
         animateCircularRing(resultCircle, resultText, resultTarget);
     }
 
-    const resultProgressBars = document.querySelectorAll('.result-progress-fill');
+    const resultProgressBars = document.querySelectorAll(
+        '.result-progress-fill, .progress-fill'
+    );
     const suggestionCards = document.querySelectorAll('.suggestion-card');
     const skillChips = document.querySelectorAll('.skill-pill');
     const keywordChips = document.querySelectorAll('.keyword-chip');
@@ -176,6 +178,8 @@ function animateResultPage() {
             bar.style.width = `${fill}%`;
         }, 380 + index * 70);
     });
+
+    
 
     suggestionCards.forEach((card, index) => {
         card.style.opacity = '0';
