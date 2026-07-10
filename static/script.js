@@ -123,12 +123,14 @@ function animateCircularRing(circle, textNode, target) {
     const circumference = circle.getTotalLength ? circle.getTotalLength() : 2 * Math.PI * (circle.r ? circle.r.baseVal.value : 50);
     const offset = circumference * (1 - target / 100);
 
-    circle.style.strokeDasharray = `${circumference} ${circumference}`;
-    circle.style.strokeDashoffset = `${circumference}`;
+    circle.style.strokeDashoffset = 0;
 
-    setTimeout(() => {
-        circle.style.strokeDashoffset = `${offset}`;
-    }, 150);
+    circle.style.strokeDasharray = `0 ${circumference}`;
+
+    requestAnimationFrame(() => {
+        circle.style.strokeDasharray =
+            `${circumference * target / 100} ${circumference}`;
+    });
 
     if (textNode) {
         let current = 0;
@@ -164,7 +166,9 @@ function animateResultPage() {
         animateCircularRing(resultCircle, resultText, resultTarget);
     }
 
-    const resultProgressBars = document.querySelectorAll('.result-progress-fill');
+    const resultProgressBars = document.querySelectorAll(
+        '.result-progress-fill, .progress-fill'
+    );
     const suggestionCards = document.querySelectorAll('.suggestion-card');
     const skillChips = document.querySelectorAll('.skill-pill');
     const keywordChips = document.querySelectorAll('.keyword-chip');
@@ -176,6 +180,8 @@ function animateResultPage() {
             bar.style.width = `${fill}%`;
         }, 380 + index * 70);
     });
+
+    
 
     suggestionCards.forEach((card, index) => {
         card.style.opacity = '0';
