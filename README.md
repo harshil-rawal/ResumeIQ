@@ -3,7 +3,7 @@
 <p align="center">
   <img src="<p align="center">
   <img src="https://raw.githubusercontent.com/harshil-rawal/ResumeIQ/main/static/logo.png" width="180">
-</p>" alt="ResumeIQ Logo" width="180"/>
+
 </p>
 
 <p align="center">
