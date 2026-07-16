@@ -1,7 +1,9 @@
 # 🚀 ResumeIQ – AI Resume Screening & ATS Score Predictor
 
 <p align="center">
-  <img src="static/images/logo.png" alt="ResumeIQ Logo" width="180"/>
+  <img src="<p align="center">
+  <img src="https://raw.githubusercontent.com/<username>/<repository>/main/static/logo.png" width="180">
+</p>" alt="ResumeIQ Logo" width="180"/>
 </p>
 
 <p align="center">
