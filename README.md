@@ -1,4 +1,4 @@
-# 🚀 ResumeIQ – AI Resume Screening & ATS Score Predictor
+#  ResumeIQ – AI Resume Screening & ATS Score Predictor
 
 <p align="center">
   <img src="static/images/logo.png" alt="ResumeIQ Logo" width="180"/>
