@@ -8,6 +8,17 @@ const removeButton = document.getElementById("remove-file");
 const uploadButton = document.getElementById("upload-btn");
 const buttonText = document.getElementById("button-text");
 const loader = document.getElementById("loader");
+const downloadButton = document.getElementById("download-report");
+
+if (downloadButton) {
+
+    downloadButton.addEventListener("click", () => {
+
+        window.location.href = "/download-report";
+
+    });
+
+}
 
 function updateFile(file) {
     if (!fileName || !fileSize || !fileIcon || !filePreview) {
